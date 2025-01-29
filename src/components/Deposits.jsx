@@ -68,10 +68,27 @@ function Deposits() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          depositId: verificationData.depositId,
-          amount: verificationData.data.transferredAmount
+          depositId: verificationData.depositId, 
+            success: true,
+            data: {
+              payer: verificationData.data.payer,
+              payerAccount: verificationData.data.payerAccount,
+              receiver: verificationData.data.receiver,
+              receiverAccount: verificationData.data.receiverAccount,
+              paymentDate: verificationData.data.paymentDate,
+              reference: verificationData.data.reference,
+              transferredAmount: verificationData.data.transferredAmount
+            },
+            user: {
+              chatId: verificationData.user.chatId,
+              username: verificationData.user.username,
+              phoneNumber: verificationData.user.phoneNumber,
+              balance: verificationData.user.balance,
+              txId: verificationData.user.txId
+            } 
         })
       });
+
 
       if (!response.ok) {
         throw new Error('Failed to approve deposit');
